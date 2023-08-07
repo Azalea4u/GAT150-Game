@@ -16,14 +16,25 @@ namespace kiko
 		}
 	}
 
+	bool Font::Create(std::string filename, ...)
+	{
+		// va_list - type to hold information about variable arguments
+		va_list args;
+
+		// va_start - initialize va_list
+		va_start(args, filename);
+
+		// va_arg - retrieve next argument
+		int fontSize = va_arg(args, int);
+
+		// va_end - clean up the list
+		va_end(args);
+
+		return Load(filename, fontSize);
+	}
+
 	void Font::Load(const std::string& filename, int fontSize)
 	{
-		/*
-		<call TTF_OpenFont>
-		<use filename.c_str() to get the c-style string>
-		<assign the return value of TTF_OpenFont to m_ttfFont>
-		*/
-
 		// Use filename.c_str() to get the C-style string.
 		m_ttfFont = TTF_OpenFont(filename.c_str(), fontSize);
 	}

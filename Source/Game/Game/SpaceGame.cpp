@@ -3,6 +3,7 @@
 #include "Enemy.h"
 
 #include "FrameWork/Scene.h"
+#include "FrameWork/Resource/ResourceManager.h"
 
 #include "Audio/AudioSystem.h"
 #include "Input/InputSystem.h"
@@ -13,7 +14,8 @@
 bool SpaceGame::Initalize()
 {
 	// create text
-	m_font = std::make_shared<kiko::Font>("ArcadeClassic.ttf", 24);
+	m_font = kiko::g_resourceManager.Get<kiko::Font>("ArcadeClassic.ttf", 24);
+	
 	m_scoreText = std::make_unique<kiko::Text>(m_font);
 	m_scoreText->Create(kiko::g_renderer, "SCORE 0000", kiko::Color{ 1, 0, 1, 1 });
 

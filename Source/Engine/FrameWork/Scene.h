@@ -24,7 +24,6 @@ namespace kiko
 
 	private:
 		std::list<std::unique_ptr<Actor>> m_actors;
-
 	};
 
 	template<typename T>
