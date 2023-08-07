@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/Core.h"
 #include "Renderer/Model.h"
+#include "FrameWork/Components/Component.h"
 #include <memory>
 
 namespace kiko {
@@ -15,6 +16,8 @@ namespace kiko {
 		Actor(const kiko::Transform& transform) :
 			m_transform{ transform }
 		{}
+
+		void AddComponent(std::unique_ptr<Component> component);
 
 		virtual void Update(float dt);
 		virtual void Draw(kiko::Renderer& renderer);
@@ -35,6 +38,8 @@ namespace kiko {
 		float m_lifespan = -1.0f;
 
 	protected:
+		std::vector<std::unique_ptr<Component>> m_components;
+
 		bool m_destoryed = false;
 		std::shared_ptr<Model> m_model;
 

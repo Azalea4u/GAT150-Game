@@ -10,7 +10,24 @@ namespace kiko
 		if (m_texture) SDL_DestroyTexture(m_texture);
 	}
 
-	bool Texture::Load(std::string filename, class Renderer& renderer)
+	bool Texture::Create(std::string filename, ...)
+	{
+		// va_list - type to hold information about variable arguments
+		va_list args;
+
+		// va_start - initialize va_list
+		va_start(args, filename);
+		
+		// va_arg - retrieve next argument
+		Renderer& renderer = va_arg(args, Renderer);
+
+		// va_end - clean up the list
+		va_end(args);
+
+		return Load(filename, renderer);
+	}
+
+	bool Texture::Load(const std::string filename, class Renderer& renderer)
 	{
 		SDL_Surface* surface = IMG_Load(filename.c_str());
 		if (!surface)
@@ -41,20 +58,4 @@ namespace kiko
 		return vec2(point.x, point.y);
 	}
 
-	bool Texture::Create(std::string filename, ...)
-	{
-		// va_list - type to hold information about variable arguments
-		va_list args;
-
-		// va_start - initialize va_list
-		va_start(args, filename);
-		
-		// va_arg - retrieve next argument
-		Renderer& renderer = va_arg(args, Renderer);
-
-		// va_end - clean up the list
-		va_end(args);
-
-		return Load(filename, renderer);
-	}
 }
