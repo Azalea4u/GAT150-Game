@@ -18,7 +18,7 @@ public:
 	};
 
 public:
-	virtual bool Initalize() override;
+	virtual bool Initialize() override;
 	virtual void Shutdown() override;
 
 	virtual void Update(float dt) override;

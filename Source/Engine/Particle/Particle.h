@@ -1,10 +1,11 @@
 #pragma once
-#include "../Core/Color.h"
-#include "../Core/Vector2.h"
-#include "../Renderer/Renderer.h"
+#include "../Core/Math/Color.h"
+#include "../Core/Math/Vector2.h"
+#include "Renderer/Renderer.h"
 
 namespace kiko
 {
+
 	struct ParticleData
 	{
 		vec2 position;
@@ -23,7 +24,7 @@ namespace kiko
 	public:
 		Particle() = default;
 
-		void Initalize(const ParticleData& data)
+		void Initialize(const ParticleData& data)
 		{
 			m_data = data;
 			m_isActive = true;

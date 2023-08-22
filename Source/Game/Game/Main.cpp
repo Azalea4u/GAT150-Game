@@ -1,17 +1,12 @@
-#include "Renderer/Renderer.h"
 #include "Core/Core.h"
-#include "Renderer/ModelManager.h"
-#include "Renderer/Text.h"
-#include "Renderer/ParticleSystem.h"
-#include "Renderer/Texture.h"
+#include "Renderer/Renderer.h"
 #include "Input/InputSystem.h"
 #include "Audio/AudioSystem.h"
-#include "FrameWork/Scene.h"
+#include "Physics/PhysicsSystem.h"
+#include "FrameWork/Framework.h"
+
 #include "Player.h"
 #include "Enemy.h"
-#include <FrameWork/Emitter.h>
-#include "FrameWork/Resource/ResourceManager.h"
-
 #include "SpaceGame.h"
 
 #include <iostream>
@@ -55,22 +50,9 @@ public:
 	kiko::Vector2 m_vel;
 };
 
-/*
-template <typename T>
-void print(const std::string& s, const T& container)
-{
-	std::cout << s << std::endl;
-		for (auto element : container)
-		{
-			std::cout << element << " ";
-		}
-	std::cout << std::endl;
-}
-*/
-
 int main(int argc, char* argv[])
 {
-	INFO_LOG("hello world")
+	INFO_LOG("Initalizing Engine...")
 
 	kiko::MemoryTracker::Initialize();
 	kiko::seedRandom((unsigned int)time(nullptr));
@@ -82,13 +64,11 @@ int main(int argc, char* argv[])
 
 	kiko::g_inputSystem.Initialize();
 	kiko::g_audioSystem.Initialize();
+	kiko::PhysicsSystem::Instance().Initialize();
 
 	// create game
 	unique_ptr<SpaceGame> game = make_unique<SpaceGame>();
-	game->Initalize();
-
-	// create texture
-	kiko::res_t<kiko::Texture> texture = kiko::g_resourceManager.Get<kiko::Texture>("main_ship.png", kiko::g_renderer);
+	game->Initialize();
 
 	// create bg stars
 	vector <Star> stars;
@@ -121,7 +101,6 @@ int main(int argc, char* argv[])
 			kiko::g_audioSystem.PlayOneShot("Laser", false);
 		}
 		
-		
 		if (kiko::g_inputSystem.GetMouseButtonDown(0))
 		{
 			kiko::EmitterData data;
@@ -138,17 +117,18 @@ int main(int argc, char* argv[])
 			data.color = kiko::Color{ 1, 0, 0, 1 };
 			kiko::Transform transform{ { kiko::g_inputSystem.GetMousePosition() }, 0, 1 };
 			auto emitter = std::make_unique<kiko::Emitter>(transform, data);
-			emitter->m_lifespan = 0.1f;
+			emitter->lifespan = 0.1f;
 			game->m_scene->Add(std::move(emitter));
 		}
 		
-
 		// update game
 		game->Update(kiko::g_time.GetDeltaTime());
 		
 		// draw game
 		kiko::g_renderer.SetColor(0, 0, 0, 0);
 		kiko::g_renderer.BeginFrame();
+		game->Draw(kiko::g_renderer);
+
 		for (auto& star : stars)
 		{
 			star.Update(kiko::g_renderer.GetWidth(), kiko::g_renderer.GetHeight());
@@ -157,10 +137,7 @@ int main(int argc, char* argv[])
 		}
 
 		game->Draw(kiko::g_renderer);
-		kiko::g_renderer.DrawTexture(texture.get(), 200.0f, 200.0f, 0.0f);
  		kiko::g_particleSystem.Draw(kiko::g_renderer);
-
-		//text->Draw(kiko::g_renderer, 40, 30);
 
 		kiko::g_renderer.EndFrame();
 	}

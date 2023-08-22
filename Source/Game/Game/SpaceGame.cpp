@@ -1,22 +1,18 @@
 #include "SpaceGame.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Weapon.h"
 
-#include "FrameWork/Scene.h"
-#include "FrameWork/Resource/ResourceManager.h"
-#include "FrameWork/Components/SpriteComponent.h"
+#include "FrameWork/Framework.h"
 
 #include "Audio/AudioSystem.h"
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
-#include "Renderer/ModelManager.h"
-#include "Weapon.h"
 
-bool SpaceGame::Initalize()
+bool SpaceGame::Initialize()
 {
 	// create text
-	m_font = kiko::g_resourceManager.Get<kiko::Font>("ArcadeClassic.ttf", 24);
-	
+	m_font = GET_RESOURCE(kiko::Font, "ArcadeClassic.ttf", 24);
 	m_scoreText = std::make_unique<kiko::Text>(m_font);
 	m_scoreText->Create(kiko::g_renderer, "SCORE 0000", kiko::Color{ 1, 0, 1, 1 });
 
@@ -35,15 +31,15 @@ bool SpaceGame::Initalize()
 	// load audio
 	kiko::g_audioSystem.AddAudio("Laser", "Laser_Shoot.wav");
 
+	// create scene
 	m_scene = std::make_unique<kiko::Scene>();
-	
+	m_scene->Load("scene.json");
+	m_scene->Initialize();
+
 	return false;
 }
 
-void SpaceGame::Shutdown()
-{
-
-}
+void SpaceGame::Shutdown()	{}
 
 void SpaceGame::Update(float dt)
 {
@@ -51,8 +47,13 @@ void SpaceGame::Update(float dt)
 	{
 		case SpaceGame::Title:
 			if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE))
+			{
 				m_state = StartGame;
+				auto actor = m_scene->GetActorByName("Background");
+				if (actor) actor->active = false;
 
+				m_scene->GetActorByName("Title")->active = true;
+			}
 			break;
 		
 		case SpaceGame::StartGame:
@@ -64,18 +65,29 @@ void SpaceGame::Update(float dt)
         
 		case SpaceGame::StartLevel:
 			m_scene->RemoveAll();
+
+			m_scene->Load("scene.json");
+			m_scene->Initialize();
 		{
 			//create player
-			std::unique_ptr<Player> player = std::make_unique<Player>(20.0f, kiko::Pi, kiko::Transform{ {400, 300 }, 0, 6}, kiko::g_modelManager.Get("Star_Shape.txt"));
-			player->m_tag = "Player";
+			auto player = std::make_unique<Player>(20.0f, kiko::Pi, kiko::Transform{ {400, 300 }, 0, 2});
+			player->tag = "Player";
 			player->m_game = this;
-			player->SetDamping(0.9f);
 
-			// create components
-			std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
-			component->m_texture = kiko::g_resourceManager.Get<kiko::Texture>("main_ship.png", kiko::g_renderer);
-			player->AddComponent(std::move(component));
+			// create sprite components
+			auto renderComponent = CREATE_CLASS(SpriteRenderComponent);
+			renderComponent->m_texture = GET_RESOURCE(kiko::Texture, "main_ship.png", kiko::g_renderer);
+			player->AddComponent(std::move(renderComponent));
 
+			auto physicsComponent = CREATE_CLASS(EnginePhysicsComponent);
+			physicsComponent->m_damping = 0.9f;
+			player->AddComponent(std::move(physicsComponent));
+
+			auto collisionComponent = CREATE_CLASS(CircleCollisionComponent);
+			collisionComponent->m_radius = 30.0f;
+			player->AddComponent(std::move(collisionComponent));
+
+			player->Initialize();
 			m_scene->Add(std::move(player));
 		}
 			m_state = eState::Game;
@@ -87,49 +99,62 @@ void SpaceGame::Update(float dt)
 
 			if (m_SpawnTimer >= m_SpawnTime)
 			{
+				
 				m_SpawnTimer = 0;
 				if (m_round == 1)
 				{
 					// creates enemy
-					std::unique_ptr<Enemy> enemyArrow = std::make_unique<Enemy>(kiko::randomf(75.0f, 150.f), kiko::Pi, kiko::Transform{ {kiko::random(800), kiko::random(600)}, 0, 6 }, kiko::g_modelManager.Get("Arrow.txt"));
-					enemyArrow->m_tag = "Enemy";
-					enemyArrow->m_enemyType = "enemyArrow";
+					auto component = std::make_unique<kiko::SpriteRenderComponent>();
+					std::unique_ptr<Enemy> enemyArrow = std::make_unique<Enemy>(kiko::randomf(75.0f, 150.f), kiko::Pi, kiko::Transform{ {kiko::random(800), kiko::random(600)}, 0, 1 });
+					enemyArrow->tag = "Enemy";
+					enemyArrow->enemyType = "enemyArrow";
 					enemyArrow->m_game = this;
 					enemyArrow->m_game->SetEnemyLives(1);
 					// create components
-					std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
-					component->m_texture = kiko::g_resourceManager.Get<kiko::Texture>("enemy.png", kiko::g_renderer);
+					component->m_texture = GET_RESOURCE(kiko::Texture, "enemy.png", kiko::g_renderer);
 					enemyArrow->AddComponent(std::move(component));
 
+					auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
+					collisionComponent->m_radius = 30.0f;
+					enemyArrow->AddComponent(std::move(collisionComponent));
+
+					enemyArrow->Initialize();
 					m_scene->Add(std::move(enemyArrow));
 				}
 				else
 				{
 					// creates enemy
-					std::unique_ptr<Enemy> enemyPlane = std::make_unique<Enemy>(kiko::randomf(75.0f, 150.f), kiko::Pi, kiko::Transform{ {kiko::random(800), kiko::random(600)}, 0, 6 }, kiko::g_modelManager.Get("Plane.txt"));
-					enemyPlane->m_tag = "Enemy";
-					enemyPlane->m_enemyType = "enemyPlane";
+					std::unique_ptr<Enemy> enemyPlane = std::make_unique<Enemy>(kiko::randomf(75.0f, 150.f), kiko::Pi, kiko::Transform{ {kiko::random(800), kiko::random(600)}, 0, 1 });
+					enemyPlane->tag = "Enemy";
+					enemyPlane->enemyType = "enemyPlane";
 					enemyPlane->m_game = this;
 					enemyPlane->m_game->SetEnemyLives(3);
 
 					// create components
-					std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
-					component->m_texture = kiko::g_resourceManager.Get<kiko::Texture>("enemy.png", kiko::g_renderer);
+					auto component = std::make_unique<kiko::SpriteRenderComponent>();
+					component->m_texture = GET_RESOURCE(kiko::Texture, "enemy.png", kiko::g_renderer);
 					enemyPlane->AddComponent(std::move(component));
 
+					auto collisionComponent = std::make_unique<kiko::CircleCollisionComponent>();
+					collisionComponent->m_radius = 30.0f;
+					enemyPlane->AddComponent(std::move(collisionComponent));
+
+					enemyPlane->Initialize();
 					m_scene->Add(std::move(enemyPlane));
 				}
 
-				std::unique_ptr<Weapon> bonusPoints = std::make_unique<Weapon>(0.0f, kiko::Pi, kiko::Transform{ {kiko::random(800), kiko::random(600)}, 0, 3 }, kiko::g_modelManager.Get("Diamond.txt"));
-				bonusPoints->m_tag = "bonusPoints";
+				/*
+				std::unique_ptr<kiko::Weapon> bonusPoints = std::make_unique<kiko::Weapon>(0.0f, kiko::Pi, kiko::Transform{ {kiko::random(800), kiko::random(600)}, 0, 1 });
+				bonusPoints->tag = "bonusPoints";
 				bonusPoints->m_game = this;
 
 				// create components
-				std::unique_ptr<kiko::SpriteComponent> component = std::make_unique<kiko::SpriteComponent>();
-				component->m_texture = kiko::g_resourceManager.Get<kiko::Texture>("pickup.png", kiko::g_renderer);
+				auto component = std::make_unique<kiko::SpriteRenderComponent>();
+				component->m_texture = GET_RESOURCE(kiko::Texture, "pickup.png", kiko::g_renderer);
 				bonusPoints->AddComponent(std::move(component));
 
 				m_scene->Add(std::move(bonusPoints));
+				*/
 			}
 
 			if (m_gameTimer >= 30 && m_round == 1)

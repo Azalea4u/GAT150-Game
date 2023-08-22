@@ -1,7 +1,6 @@
 #pragma once
-#include "../Core/Color.h"
-#include "../Core/Vector2.h"
-#include "../Renderer/Renderer.h"
+#include "../Core/Math/Color.h"
+#include "../Core/Math/Vector2.h"
 
 namespace kiko
 {
@@ -23,13 +22,13 @@ namespace kiko
 	public:
 		Particle() = default;
 
-		void Initalize(const ParticleData& data)
+		void Initialize(const ParticleData& data)
 		{
 			m_data = data;
 			m_isActive = true;
 		}
 		void Update(float dt);
-		void Draw(Renderer& renderer);
+		void Draw(class Renderer& renderer);
 
 		friend class ParticleSystem;
 

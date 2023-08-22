@@ -50,10 +50,10 @@ namespace kiko
 	vec2 Texture::GetSize()
 	{
 		ASSERT_LOG(m_texture != NULL, "Texture is null");
+
+		// SDL_Point - structure that defines a two dimensional point
 		SDL_Point point;
-		
-		//int SDL_QueryTexture(SDL_Texture * texture, Uint32 * format, int* access, int* w, int* h);
-		SDL_QueryTexture(m_texture, NULL, NULL, &point.x, &point.y);
+		SDL_QueryTexture(m_texture, nullptr , nullptr, &point.x, &point.y);
 
 		return vec2(point.x, point.y);
 	}

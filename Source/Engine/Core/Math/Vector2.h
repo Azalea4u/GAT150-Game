@@ -10,11 +10,16 @@ namespace kiko
 		float x, y;
 
 	public:
-		// : are initalizers
+		// : are Initializers
 		Vector2() : x{ 0 }, y{ 0 } {}
 		Vector2(float v) : x{ v }, y{ v } {}
 		Vector2(float x, float y) : x{ x }, y{ y } {}
 		Vector2(int x, int y) : x{ (float)x }, y{ (float)y } {}
+
+		float operator [](size_t index) const { return (&x)[index]; }
+		float& operator [](size_t index) { return (&x)[index]; }
+
+		Vector2 operator - () const { return Vector2(-x, -y); }
 
 		Vector2 Add(const Vector2 v) const { return Vector2(x + v.x, y + v.y); }
 		Vector2 operator + (const Vector2& v) const { return Vector2(x + v.x, y + v.y); }
@@ -90,6 +95,12 @@ namespace kiko
 		std::string ys = line.substr(line.find(",") + 1, line.find("}") - (line.find(",") + 1));
 		v.y = std::stof(ys);
 
+		return stream;
+	}
+
+	inline std::ostream& operator<< (std::ostream& stream, const Vector2& v)
+	{
+		stream << v.x << ", " << v.y;
 		return stream;
 	}
 

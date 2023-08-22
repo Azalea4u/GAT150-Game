@@ -1,1 +1,9 @@
-INFO: Main.cpp (73) hello world
+INFO: Factory.h (66) Class Registered: Weapon
+INFO: Factory.h (66) Class Registered: TextRenderComponent
+INFO: Factory.h (66) Class Registered: SpriteRenderComponent
+INFO: Factory.h (66) Class Registered: ModelRenderComponent
+INFO: Factory.h (66) Class Registered: EnginePhysicsComponent
+INFO: Factory.h (66) Class Registered: CircleCollisionComponent
+INFO: Factory.h (66) Class Registered: Actor
+INFO: Main.cpp (55) Initalizing Engine...
+INFO: Factory.h (74) Prototype Registered: Rocket
