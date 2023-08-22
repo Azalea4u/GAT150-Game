@@ -46,13 +46,13 @@ void SpaceGame::Update(float dt)
 	switch (m_state)
 	{
 		case SpaceGame::Title:
+				m_scene->GetActorByName("Title")->active = true;
 			if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE))
 			{
 				m_state = StartGame;
 				auto actor = m_scene->GetActorByName("Background");
 				if (actor) actor->active = false;
 
-				m_scene->GetActorByName("Title")->active = true;
 			}
 			break;
 		

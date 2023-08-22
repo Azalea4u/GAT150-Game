@@ -20,10 +20,10 @@ namespace kiko
 	public:
 		std::string text;
 		std::string fontName;
-		int fontSize;
+		int fontSize = 0;
 
 	private:
-		bool m_chnaged = true;
+		bool m_changed = true;
 		std::unique_ptr<class Text> m_text;
 	};
 }

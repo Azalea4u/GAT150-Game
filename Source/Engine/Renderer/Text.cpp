@@ -1,8 +1,8 @@
 #include "Text.h"
 #include "Font.h"
 #include "Renderer.h"
-#include <SDL2-2.28.1/include/SDL.h>
 #include <SDL2-2.28.1/include/SDL_ttf.h>
+#include <SDL2-2.28.1/include/SDL.h>
 
 namespace kiko
 {
@@ -45,7 +45,7 @@ namespace kiko
 		dest.w = (int)size.x;
 		dest.h = (int)size.y;
 
-		//SDL_RenderCopy(renderer.m_renderer, m_texture, &dest, RadiansToDegrees(mx.GetRotation()), nullptr, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(renderer.m_renderer, m_texture,nullptr, &dest, RadiansToDegrees(mx.GetRotation()), nullptr, SDL_FLIP_NONE);
 	}
 
 }

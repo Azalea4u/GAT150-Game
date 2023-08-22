@@ -13,7 +13,7 @@ namespace kiko
 		fontName = other.fontName;
 		fontSize = other.fontSize;
 		
-		m_chnaged = true;
+		m_changed = true;
 		m_text = std::make_unique<Text>(*other.m_text.get());
 	}
 
@@ -28,17 +28,16 @@ namespace kiko
 	}
 
 	void TextRenderComponent::Update(float dt)
-	{
-	}
+	{}
 
 	void TextRenderComponent::Draw(Renderer& renderer)
 	{
 		// update text if changed
-		if (m_chnaged)
+		if (m_changed)
 		{
-			m_chnaged = false;
+			m_changed = false;
 			//create text using text string and color
-			m_text->Create(renderer, text, Color(255, 255, 255, 255));
+			m_text->Create(renderer, text, { 1, 1, 1, 1 });
 		}
 		//draw text
 		m_text->Draw(renderer, m_owner->transform);
@@ -50,7 +49,7 @@ namespace kiko
 		if (string != text)
 		{
 			text = string;
-			m_chnaged = true;
+			m_changed = true;
 		}
 	}
 
