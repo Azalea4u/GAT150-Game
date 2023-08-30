@@ -12,7 +12,6 @@ INFO: Factory.h (66) Class Registered: Box2DCollisionComponent
 INFO: Factory.h (66) Class Registered: Box2DPhysicsComponent
 INFO: Factory.h (66) Class Registered: Actor
 INFO: Main.cpp (23) Initalizing Engine...
-INFO: Factory.h (74) Prototype Registered: bonusPoints
 INFO: Factory.h (74) Prototype Registered: Crate
 INFO: Factory.h (74) Prototype Registered: tile01
 INFO: Factory.h (74) Prototype Registered: tile02

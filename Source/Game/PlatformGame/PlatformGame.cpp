@@ -19,6 +19,7 @@ bool PlatformGame::Initialize()
 
 	m_scene->GetActorByName("Game Over")->active = false;
 	m_scene->GetActorByName("Title_Background")->active = true;
+	m_scene->GetActorByName("World")->active = false;
 
 	// add events
 	EVENT_SUBSCRIBE("AddPoints", PlatformGame::AddPoints);

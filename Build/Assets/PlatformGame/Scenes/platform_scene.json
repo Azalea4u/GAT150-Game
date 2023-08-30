@@ -33,46 +33,6 @@
       ]
     },
     {
-      "type": "Weapon",
-      "name": "bonusPoints",
-      "prototype": true,
-      "tag": "Player",
-      "transform": {
-        "position": [ 400, 300 ],
-        "scale": 1,
-        "rotation": 0
-      },
-      "speed": 0,
-      "turnRate": 0,
-      "components": [
-        {
-          "type": "SpriteAnimRenderComponent",
-          "defaultSequence": "idle",
-          "sequences": [
-            {
-              "name": "idle",
-              "fps": 12,
-              "numColumns": 8,
-              "numRows": 1,
-              "startFrame": 1,
-              "endFrame": 8,
-              "textureName": "Textures/coin.png"
-            }
-          ]
-        },
-        {
-          "type": "Box2DPhysicsComponent",
-          "damping": 0.98,
-          "angularDamping": 2,
-          "gravityScale": 0
-        },
-        {
-          "type": "Box2DCollisionComponent",
-          "size": [ 32, 32 ]
-        }
-      ]
-    },
-    {
       "type": "Actor",
       "name": "Hearts",
       "persistent": true,
@@ -252,7 +212,7 @@
       "health": 5,
       "knockbackForce": 20,
       "transform": {
-        "position": [ 440, 50 ],
+        "position": [ 700, 50 ],
         "scale": 1.5,
         "rotation": 0
       },
