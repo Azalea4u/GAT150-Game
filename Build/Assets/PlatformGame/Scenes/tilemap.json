@@ -1,0 +1,277 @@
+{
+	"actors":[
+		{
+			"type":"Actor",
+			"name":"tile01",
+			"tag":"Ground",
+			"prototype":true,
+			"transform":{
+				"scale": 2
+			},
+			"components":[
+				{
+					"type":"SpriteRenderComponent",
+					"textureName":"textures/tileset2_32x32.png",
+					"source":[
+						96,
+						416,
+						32,
+						32
+					]
+				},
+				{
+					"type":"Box2DPhysicsComponent",
+					"isDynamic":false
+				},
+				{
+					"type":"Box2DCollisionComponent",
+					"restitution":0
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "tile02",
+			"tag": "Ground",
+			"prototype": true,
+			"transform": {
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "SpriteRenderComponent",
+					"textureName": "textures/tileset2_32x32.png",
+					"source": [
+						0,
+						128,
+						32,
+						32
+					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"isDynamic": false
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Grass_LeftCorner",
+			"tag": "Ground",
+			"prototype": true,
+			"transform": {
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "SpriteRenderComponent",
+					"textureName": "textures/tileset.png",
+					"source": [
+						0,
+						0,
+						32,
+						32
+					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"isDynamic": false
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Grass_Middle",
+			"tag": "Ground",
+			"prototype": true,
+			"transform": {
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "SpriteRenderComponent",
+					"textureName": "textures/tileset.png",
+					"source": [
+						16,
+						0,
+						32,
+						32
+					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"isDynamic": false
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Grass_RightCorner",
+			"tag": "Ground",
+			"prototype": true,
+			"transform": {
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "SpriteRenderComponent",
+					"textureName": "textures/tileset.png",
+					"source": [
+						16,
+						0,
+						32,
+						32
+					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"isDynamic": false
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Dirt_LeftCorner",
+			"tag": "Ground",
+			"prototype": true,
+			"transform": {
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "SpriteRenderComponent",
+					"textureName": "textures/tileset.png",
+					"source": [
+						0,
+						16,
+						32,
+						32
+					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"isDynamic": false
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Dirt_Middle",
+			"tag": "Ground",
+			"prototype": true,
+			"transform": {
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "SpriteRenderComponent",
+					"textureName": "textures/tileset.png",
+					"source": [
+						16,
+						16,
+						32,
+						32
+					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"isDynamic": false
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0
+				}
+			]
+		},
+		{
+			"type":"Actor",
+			"name":"Dirt_RightCorner",
+			"tag":"Ground",
+			"prototype":true,
+			"transform":{
+				"scale": 2
+			},
+			"components": [
+				{
+					"type": "SpriteRenderComponent",
+					"textureName": "textures/tileset.png",
+					"source": [
+						16,
+						16,
+						32,
+						32
+					]
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"isDynamic": false
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"restitution": 0
+				}
+			]
+		},
+		{
+			"type":"Actor",
+			"name":"World",
+			"transform":{
+				"position":[
+					32,
+					32
+				]
+			},
+			"components":[
+				{
+					"type":"TilemapComponent",
+					"numColumns": 24,
+					"numRows": 20,
+					"size": [ 32, 32 ],
+					"tileNames": [ "", "tile01", "Grass_LeftCorner", "Grass_Middle", "Grass_RightCorner", "Dirt_LeftCorner", "Dirt_Middle", "Dirt_RightCorner" ],
+					"tiles": [
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							2, 3, 3, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 4,
+							5, 6, 6, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 6, 6, 6, 7,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+					]
+				}    
+			]
+		}
+	]
+}

@@ -12,11 +12,11 @@
 #include <iostream>
 #include <vector>
 #include <thread>
-#include <memory>
 #include <cassert>
 #include <array>
 #include <map>
 #include <cstdarg>
+#include <functional>
 
 using namespace std;
 using vec2 = kiko::Vector2;
@@ -56,11 +56,11 @@ int main(int argc, char* argv[])
 
 	kiko::MemoryTracker::Initialize();
 	kiko::seedRandom((unsigned int)time(nullptr));
-	kiko::setFilePath("Assets");
+	kiko::setFilePath("Assets/SpaceGame");
 
 	// Initialize engine
 	kiko::g_renderer.Initialize();
-	kiko::g_renderer.CreateWindow("CSC196", 800, 600);
+	kiko::g_renderer.CreateWindow("GAT150_SpaceGame", 800, 600);
 
 	kiko::g_inputSystem.Initialize();
 	kiko::g_audioSystem.Initialize();
@@ -87,6 +87,7 @@ int main(int argc, char* argv[])
 	bool quit = false;
 	while (!quit)
 	{
+		// update engine
 		kiko::g_time.Tick();
 		kiko::g_inputSystem.Update();
 		kiko::g_audioSystem.Update();
@@ -95,30 +96,12 @@ int main(int argc, char* argv[])
 		{
 			quit = true;
 		}
+		kiko::g_particleSystem.Update(kiko::g_time.GetDeltaTime());
+		kiko::PhysicsSystem::Instance().Update(kiko::g_time.GetDeltaTime());
 
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE))
 		{
-			kiko::g_audioSystem.PlayOneShot("Laser", false);
-		}
-		
-		if (kiko::g_inputSystem.GetMouseButtonDown(0))
-		{
-			kiko::EmitterData data;
-			data.burst = true;
-			data.burstCount = 100;
-			data.spawnRate = 200;
-			data.angle = 0;
-			data.angleRange = kiko::Pi;
-			data.lifetimeMin = 0.5f;
-			data.lifetimeMin = 1.5f;
-			data.speedMin = 50;
-			data.speedMax = 250;
-			data.damping = 0.5f;
-			data.color = kiko::Color{ 1, 0, 0, 1 };
-			kiko::Transform transform{ { kiko::g_inputSystem.GetMousePosition() }, 0, 1 };
-			auto emitter = std::make_unique<kiko::Emitter>(transform, data);
-			emitter->lifespan = 0.1f;
-			game->m_scene->Add(std::move(emitter));
+			kiko::g_audioSystem.PlayOneShot("SpaceGame/Audio/Laser", false);
 		}
 		
 		// update game

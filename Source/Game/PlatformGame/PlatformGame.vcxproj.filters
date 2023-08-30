@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{05c4807e-d5ac-4849-93ef-8f8786ec05ba}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PlatformGame.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PlatformGame.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Build\Assets\PlatformGame\Scenes\platform_scene.json">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="..\..\..\Build\Assets\PlatformGame\Scenes\tilemap.json">
+      <Filter>Resource</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -29,9 +29,13 @@ namespace kiko
 		}
 
 		res_t<T> resource = std::make_shared<T>();
-		resource->Create(filename, args...);
-		m_resources[filename] = resource;
+		if (!resource->Create(filename, args...))
+		{
+			WARNING_LOG("Resource not found: " << filename);
+			return res_t<T>();
+		}
 
+		m_resources[filename] = resource;
 		return resource;
 	}
 }

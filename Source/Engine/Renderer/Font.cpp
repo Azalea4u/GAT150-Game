@@ -34,7 +34,7 @@ namespace kiko
 		m_ttfFont = TTF_OpenFont(filename.c_str(), fontSize);
 		if (!m_ttfFont)
 		{
-			WARNING_LOG("Failed to load font: " << filename);
+			WARNING_LOG("Font failed to load: " << filename);
 			return false;
 		}
 

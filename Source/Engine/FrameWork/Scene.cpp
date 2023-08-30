@@ -18,10 +18,19 @@ namespace kiko
 		while (iter != m_actors.end())
 		{
 			(*iter)->Update(dt);
-			((*iter)->m_destoryed) ? m_actors.erase(iter++) : iter++;
+			if ((*iter)->destoryed)
+			{
+				(*iter)->OnDestory();
+				m_actors.erase(iter++);
+			}
+			else
+			{
+				iter++;
+			}
 		}
 		
 		// check collisions
+		/*
 		for (auto iter1 = m_actors.begin(); iter1 != m_actors.end(); iter1++)
 		{
 			for (auto iter2 = std::next(iter1); iter2 != m_actors.end(); iter2++)
@@ -39,6 +48,9 @@ namespace kiko
 				}
 			}
 		}
+		*/
+
+
 	}
 
 	void Scene::Draw(Renderer& renderer)

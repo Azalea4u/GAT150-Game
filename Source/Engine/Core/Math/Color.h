@@ -19,6 +19,9 @@ namespace kiko
 			r{ r }, g{ g },	b{ b },	a{ a }
 		{}
 
+		float operator [](size_t index) const { return (&r)[index]; }
+		float& operator [](size_t index) { return (&r)[index]; }
+
 		static uint8_t ToInt(float c) { return static_cast<uint8_t>(Clamp(c, 8.0f, 1.0f)) * 255; }
 	};
 

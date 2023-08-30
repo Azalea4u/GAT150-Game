@@ -10,7 +10,8 @@ namespace kiko
 
 		virtual void Update(float dt) override;
 		virtual void ApplyForce(const vec2& force);
-	public:
-		vec2 force;
+
+		// Inherited via PhysicsComponent
+		virtual void ApplyTorque(float torque) override;
 	};
 }

@@ -8,6 +8,9 @@
     <Filter Include="Source\Components">
       <UniqueIdentifier>{f331a4da-23ca-4174-9149-797648085d66}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Event">
+      <UniqueIdentifier>{76114a09-c31d-46ae-b12e-b91e63d6d4e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp">
@@ -35,6 +38,21 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\TextRenderComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Event\EventManager.cpp">
+      <Filter>Source\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Box2DCollisionComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Box2DPhysicsComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpriteAnimRenderComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\TilemapComponent.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -94,6 +112,24 @@
       <Filter>Source\Components</Filter>
     </ClInclude>
     <ClInclude Include="Components\TextRenderComponent.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\Event.h">
+      <Filter>Source\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Event\EventManager.h">
+      <Filter>Source\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Box2DCollisionComponent.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Box2DPhysicsComponent.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteAnimRenderComponent.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\TilemapComponent.h">
       <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>

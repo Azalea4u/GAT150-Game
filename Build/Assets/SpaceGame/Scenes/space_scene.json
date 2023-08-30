@@ -1,0 +1,158 @@
+{
+	"actors": [
+		{
+			"type": "Actor",
+			"name": "Background",
+			"persistent": true,
+			"tag": "Player",
+			"lifespan": 3,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 0.4,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "SpriteRenderComponent",
+					"textureName": "Textures/space_scene.jpg"
+				}
+			]
+		},
+		{
+			"type": "Actor",
+			"name": "Title",
+			"persistent": true,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"components": [
+				{
+					"type": "TextRenderComponent",
+					"fontName": "Fonts/arcadeclassic.ttf",
+					"fontSize": 24,
+					"text":  "ASTEROID"
+				}
+			]
+		},
+		{
+			"type": "Weapon",
+			"name": "Rocket",
+			"prototype": true,
+			"tag": "Player",
+			"lifespan": 3,
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"speed": 10,
+			"components": [
+				{
+					"type": "SpriteRenderComponent",
+					"textureName": "Textures/rocket.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0,
+					"angularDamping": 2,
+					"gravityScale": 0.3
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 32, 32 ],
+					"isTrigger": true,
+					"constrainAngle": true
+				}
+			]
+		},
+		{
+			"type": "Player",
+			"name": "Player",
+			"prototype": true,
+			"tag": "Player",
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"speed": 8,
+			"turnRate": 0.5,
+			"components": [
+				{
+					"type": "SpriteRenderComponent",
+					"textureName": "Textures/main_ship.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"angularDamping": 2,
+					"gravityScale": 0
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 32, 32 ]
+				}
+			]
+		},
+		{
+			"type": "Enemy",
+			"name": "Enemy",
+			"prototype": true,
+			"tag": "Enemy",
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"speed": 2,
+			"turnRate": 0.5,
+			"components": [
+				{
+					"type": "SpriteRenderComponent",
+					"textureName": "Textures/enemy.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"angularDamping": 2,
+					"gravityScale": 0
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 32, 32 ]
+				}
+			]
+		},
+		{
+			"type": "Weapon",
+			"name": "bonusPoints",
+			"prototype": true,
+			"tag": "Player",
+			"transform": {
+				"position": [ 400, 300 ],
+				"scale": 1,
+				"rotation": 0
+			},
+			"speed": 0,
+			"turnRate": 0,
+			"components": [
+				{
+					"type": "SpriteRenderComponent",
+					"textureName": "Textures/pickup.png"
+				},
+				{
+					"type": "Box2DPhysicsComponent",
+					"damping": 0.98,
+					"angularDamping": 2,
+					"gravityScale": 0
+				},
+				{
+					"type": "Box2DCollisionComponent",
+					"size": [ 32, 32 ]
+				}
+			]
+		}
+	]
+}

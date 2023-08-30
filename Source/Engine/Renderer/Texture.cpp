@@ -32,7 +32,7 @@ namespace kiko
 		SDL_Surface* surface = IMG_Load(filename.c_str());
 		if (!surface)
 		{
-			WARNING_LOG("Failed to load texture: %s" << filename.c_str());
+			WARNING_LOG("Texture failed to load: " << filename.c_str());
 			return false;
 		}
 		
@@ -40,7 +40,7 @@ namespace kiko
 		SDL_FreeSurface(surface);
 		if (!m_texture)
 		{
-			WARNING_LOG("Failed to create texture: %s" << filename.c_str());
+			WARNING_LOG("Texture failed to load: " << filename.c_str());
 			return false;
 		}
 

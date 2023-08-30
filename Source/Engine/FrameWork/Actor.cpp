@@ -46,7 +46,7 @@ namespace kiko {
 		{
 			lifespan -= dt;
 			if (lifespan <= 0.0f)
-				m_destoryed = true;
+				destoryed = true;
 		}
 
 		for (auto& component : components)
@@ -79,6 +79,7 @@ namespace kiko {
 
 		READ_DATA(value, tag);
 		READ_DATA(value, enemyType);
+		READ_DATA(value, state);
 		READ_DATA(value, lifespan);
 		READ_DATA(value, persistent);
 		READ_DATA(value, prototype);

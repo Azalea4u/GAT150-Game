@@ -1,9 +1,24 @@
+INFO: Factory.h (66) Class Registered: Enemy
+INFO: Factory.h (66) Class Registered: Player
 INFO: Factory.h (66) Class Registered: Weapon
+INFO: Factory.h (66) Class Registered: TilemapComponent
 INFO: Factory.h (66) Class Registered: TextRenderComponent
 INFO: Factory.h (66) Class Registered: SpriteRenderComponent
+INFO: Factory.h (66) Class Registered: SpriteAnimRenderComponent
 INFO: Factory.h (66) Class Registered: ModelRenderComponent
 INFO: Factory.h (66) Class Registered: EnginePhysicsComponent
 INFO: Factory.h (66) Class Registered: CircleCollisionComponent
+INFO: Factory.h (66) Class Registered: Box2DCollisionComponent
+INFO: Factory.h (66) Class Registered: Box2DPhysicsComponent
 INFO: Factory.h (66) Class Registered: Actor
-INFO: Main.cpp (55) Initalizing Engine...
-INFO: Factory.h (74) Prototype Registered: Rocket
+INFO: Main.cpp (23) Initalizing Engine...
+INFO: Factory.h (74) Prototype Registered: bonusPoints
+INFO: Factory.h (74) Prototype Registered: Crate
+INFO: Factory.h (74) Prototype Registered: tile01
+INFO: Factory.h (74) Prototype Registered: tile02
+INFO: Factory.h (74) Prototype Registered: Grass_LeftCorner
+INFO: Factory.h (74) Prototype Registered: Grass_Middle
+INFO: Factory.h (74) Prototype Registered: Grass_RightCorner
+INFO: Factory.h (74) Prototype Registered: Dirt_LeftCorner
+INFO: Factory.h (74) Prototype Registered: Dirt_Middle
+INFO: Factory.h (74) Prototype Registered: Dirt_RightCorner
