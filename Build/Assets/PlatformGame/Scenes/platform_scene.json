@@ -144,41 +144,6 @@
     },
     {
       "type": "Actor",
-      "name": "Coin",
-      "persistent": true,
-      "transform": {
-        "position": [ 400, 300 ],
-        "scale": 1,
-        "rotation": 0
-      },
-      "components": [
-        {
-          "type": "SpriteAnimRenderComponent",
-          "defaultSequenceName": "idle",
-          "sequences": [
-            {
-              "name": "idle",
-              "fps": 12,
-              "numColumns": 8,
-              "numRows": 1,
-              "startFrame": 1,
-              "endFrame": 8,
-              "textureName": "Textures/coin.png"
-            }
-          ]
-        },
-        {
-          "type": "Box2DPhysicsComponent"
-        },
-        {
-          "type": "Box2DCollisionComponent",
-          "restitution": 0.5
-
-        }
-      ]
-    },
-    {
-      "type": "Actor",
       "name": "Crate",
       "tag": "Ground",
       "persistent": true,

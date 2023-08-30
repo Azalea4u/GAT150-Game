@@ -20,10 +20,6 @@ bool PlatformGame::Initialize()
 	m_scene->GetActorByName("Game Over")->active = false;
 	m_scene->GetActorByName("Title_Background")->active = true;
 
-	m_scene->GetActorByName("Player")->active = false;
-	m_scene->GetActorByName("Bat")->active = false;
-	m_scene->GetActorByName("Frog")->active = false;
-
 	// add events
 	EVENT_SUBSCRIBE("AddPoints", PlatformGame::AddPoints);
 	EVENT_SUBSCRIBE("OnPlayerDead", PlatformGame::OnPlayerDead);
@@ -41,12 +37,9 @@ void PlatformGame::Update(float dt)
 	{
 	case PlatformGame::Title:
 	{
-		/*
-		auto actor = INSTANTIATE(Actor, "Crate");
-		actor->transform.position = kiko::vec2{ kiko::random(kiko::g_renderer.GetWidth()), 100 };
-		actor->Initialize();
-		m_scene->Add(std::move(actor));
-		*/
+		m_scene->GetActorByName("Player")->active = false;
+		m_scene->GetActorByName("Bat")->active = false;
+		m_scene->GetActorByName("Frog")->active = false;
 
 		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE))
 		{
@@ -83,13 +76,6 @@ void PlatformGame::Update(float dt)
 
 	case PlatformGame::GameOver:
 		m_scene->GetActorByName("Game Over")->active = true;
-
-		if (kiko::g_inputSystem.GetKeyDown(SDL_SCANCODE_SPACE))
-		{
-			m_scene->RemoveAll();
-			m_state = Title;
-			
-		}
 		break;
 
 	default:
