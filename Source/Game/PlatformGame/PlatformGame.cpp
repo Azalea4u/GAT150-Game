@@ -55,6 +55,8 @@ void PlatformGame::Update(float dt)
 		m_scene->GetActorByName("Player")->active = true;
 		m_scene->GetActorByName("Bat")->active = true;
 		m_scene->GetActorByName("Frog")->active = true;
+		player->health = 4;
+
 		m_state = Game;
 
 		break;

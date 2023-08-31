@@ -132,7 +132,6 @@ namespace kiko
 
 			std::cout << "Player health: " << health << std::endl;
 
-
 			if (health == 0)
 			{
 				destoryed = true;
